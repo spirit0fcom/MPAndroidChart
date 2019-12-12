@@ -50,11 +50,9 @@ public class XAxisRenderer extends AxisRenderer {
             MPPointD p2 = mTrans.getValuesByTouchPoint(mViewPortHandler.contentRight(), mViewPortHandler.contentTop());
 
             if (inverted) {
-
                 min = (float) p2.x;
                 max = (float) p1.x;
             } else {
-
                 min = (float) p1.x;
                 max = (float) p2.x;
             }
@@ -117,29 +115,37 @@ public class XAxisRenderer extends AxisRenderer {
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() - yoffset, pointF);
+            drawMarkTicket(c,mViewPortHandler.contentTop(),-10);
 
         } else if (mXAxis.getPosition() == XAxisPosition.TOP_INSIDE) {
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() + yoffset + mXAxis.mLabelRotatedHeight, pointF);
+            drawMarkTicket(c,mViewPortHandler.contentTop(),-10);
 
         } else if (mXAxis.getPosition() == XAxisPosition.BOTTOM) {
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() + yoffset, pointF);
+            drawMarkTicket(c,mViewPortHandler.contentBottom(),+10);
 
         } else if (mXAxis.getPosition() == XAxisPosition.BOTTOM_INSIDE) {
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() - yoffset - mXAxis.mLabelRotatedHeight, pointF);
+            drawMarkTicket(c,mViewPortHandler.contentBottom(),+10);
 
         } else { // BOTH SIDED
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() - yoffset, pointF);
+            drawMarkTicket(c,mViewPortHandler.contentTop(),-10);
+
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() + yoffset, pointF);
+            drawMarkTicket(c,mViewPortHandler.contentBottom(),+10);
+
         }
         MPPointF.recycleInstance(pointF);
     }
@@ -174,7 +180,7 @@ public class XAxisRenderer extends AxisRenderer {
     /**
      * draws the x-labels on the specified y-position
      *
-     * @param pos
+     * @param pos mark ticket length
      */
     protected void drawLabels(Canvas c, float pos, MPPointF anchor) {
 
@@ -229,6 +235,29 @@ public class XAxisRenderer extends AxisRenderer {
     protected void drawLabel(Canvas c, String formattedLabel, float x, float y, MPPointF anchor, float angleDegrees) {
         Utils.drawXAxisValue(c, formattedLabel, x, y, mAxisLabelPaint, anchor, angleDegrees);
     }
+
+    /**
+     * Draw the mark tickets on the specified y-position
+     * @param c
+     * @param pos
+     * @param length
+     */
+    protected void drawMarkTicket (Canvas c, float pos, float length) {
+        if (!mXAxis.isDrawMarkTicksEnabled() || !mXAxis.isEnabled()) return;
+
+        float[] positions = new float[mXAxis.mEntryCount * 2];
+        for (int i = 0; i < positions.length; i += 2) {
+            positions[i] = mXAxis.mEntries[i / 2];
+        }
+        mTrans.pointValuesToPixel(positions);
+
+        for (int i = 0; i < positions.length; i += 2) {
+            float x = positions[i];
+            c.drawLine(x, pos, x, pos+length , mAxisLinePaint);
+        }
+    }
+
+
     protected Path mRenderGridLinesPath = new Path();
     protected float[] mRenderGridLinesBuffer = new float[2];
     @Override
@@ -290,7 +319,9 @@ public class XAxisRenderer extends AxisRenderer {
         c.drawPath(gridLinePath, mGridPaint);
 
         gridLinePath.reset();
+
     }
+
 
     protected float[] mRenderLimitLinesBuffer = new float[2];
     protected RectF mLimitLineClippingRect = new RectF();

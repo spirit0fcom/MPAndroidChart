@@ -117,6 +117,11 @@ public abstract class AxisBase extends ComponentBase {
     protected boolean mDrawGridLinesBehindData = true;
 
     /**
+     * flag indicating the mark ticks should be drawn
+     */
+    protected boolean mDrawMarkTicks = true;
+
+    /**
      * Extra spacing for `axisMinimum` to be added to automatically calculated `axisMinimum`
      */
     protected float mSpaceMin = 0.f;
@@ -458,6 +463,17 @@ public abstract class AxisBase extends ComponentBase {
 
     public boolean isDrawGridLinesBehindDataEnabled() {
         return mDrawGridLinesBehindData;
+    }
+
+    /**
+     *
+     * @return
+     */
+
+    public void setDrawMarkTicks(boolean enabled) { mDrawMarkTicks = enabled; }
+
+    public boolean isDrawMarkTicksEnabled() {
+        return mDrawMarkTicks;
     }
 
     /**

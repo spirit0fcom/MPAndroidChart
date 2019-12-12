@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
 import com.github.mikephil.charting.components.LimitLine;
@@ -110,9 +111,12 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
         XAxis xAxis;
         {   // // X-Axis Style // //
             xAxis = chart.getXAxis();
+            xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
 
             // vertical grid lines
-            xAxis.enableGridDashedLine(10f, 10f, 0f);
+            xAxis.setDrawGridLines(false);
+            xAxis.setDrawMarkTicks(true);
+            //xAxis.enableGridDashedLine(10f, 10f, 0f);
         }
 
         YAxis yAxis;
@@ -123,7 +127,7 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
             chart.getAxisRight().setEnabled(false);
 
             // horizontal grid lines
-            yAxis.enableGridDashedLine(10f, 10f, 0f);
+            //yAxis.enableGridDashedLine(10f, 10f, 0f);
 
             // axis range
             yAxis.setAxisMaximum(200f);
@@ -194,6 +198,7 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
                 chart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet) chart.getData().getDataSetByIndex(0);
             set1.setValues(values);
+            set1.notifyDataSetChanged();
             set1.notifyDataSetChanged();
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
