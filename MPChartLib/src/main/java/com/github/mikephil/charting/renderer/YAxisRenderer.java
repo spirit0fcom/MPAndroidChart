@@ -8,7 +8,6 @@ import android.graphics.Path;
 import android.graphics.RectF;
 
 import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.components.YAxis.AxisDependency;
 import com.github.mikephil.charting.components.YAxis.YAxisLabelPosition;
@@ -89,10 +88,10 @@ public class YAxisRenderer extends AxisRenderer {
         drawYLabels(c, xPos, positions, yoffset);
 
         if (dependency == AxisDependency.LEFT) {
-            drawMarkTicket(c, mViewPortHandler.contentLeft(), positions, -xoffset/2);
+            drawTickMarks(c, mViewPortHandler.contentLeft(), positions, -xoffset/2);
 
         } else {
-            drawMarkTicket(c, mViewPortHandler.contentRight(),positions, +xoffset/2);
+            drawTickMarks(c, mViewPortHandler.contentRight(),positions, +xoffset/2);
         }
 
 
@@ -139,15 +138,15 @@ public class YAxisRenderer extends AxisRenderer {
     }
 
     /**
-     * Draw mark tickets
+     * Draw tick marks
      * @param c
      * @param fixedPosition
      * @param positions
      * @param length
      */
 
-    protected void drawMarkTicket (Canvas c, float fixedPosition, float[] positions, float length) {
-        if (!mYAxis.isDrawMarkTicksEnabled() || !mYAxis.isEnabled()) return;
+    protected void drawTickMarks(Canvas c, float fixedPosition, float[] positions, float length) {
+        if (!mYAxis.isDrawTickMarksEnabled() || !mYAxis.isEnabled()) return;
 
         final int from = mYAxis.isDrawBottomYLabelEntryEnabled() ? 0 : 1;
         final int to = mYAxis.isDrawTopYLabelEntryEnabled()

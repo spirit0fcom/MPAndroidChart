@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
 import com.github.mikephil.charting.components.LimitLine;
@@ -111,18 +110,19 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
         XAxis xAxis;
         {   // // X-Axis Style // //
             xAxis = chart.getXAxis();
+
             xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
 
             // vertical grid lines
             xAxis.setDrawGridLines(false);
-            xAxis.setDrawMarkTicks(true);
+            xAxis.setDrawTickMarks(true);
             //xAxis.enableGridDashedLine(10f, 10f, 0f);
         }
 
         YAxis yAxis;
         {   // // Y-Axis Style // //
             yAxis = chart.getAxisLeft();
-            yAxis.setDrawMarkTicks(true);
+            yAxis.setDrawTickMarks(true);
             // disable dual axis (only use LEFT axis)
             chart.getAxisRight().setEnabled(false);
 

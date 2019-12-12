@@ -470,9 +470,9 @@ public abstract class AxisBase extends ComponentBase {
      * @return
      */
 
-    public void setDrawMarkTicks(boolean enabled) { mDrawMarkTicks = enabled; }
+    public void setDrawTickMarks(boolean enabled) { mDrawMarkTicks = enabled; }
 
-    public boolean isDrawMarkTicksEnabled() {
+    public boolean isDrawTickMarksEnabled() {
         return mDrawMarkTicks;
     }
 

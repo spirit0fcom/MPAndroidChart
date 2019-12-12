@@ -115,36 +115,36 @@ public class XAxisRenderer extends AxisRenderer {
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() - yoffset, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentTop(),-yoffset/2);
+            drawTickMarks(c,mViewPortHandler.contentTop(),-yoffset/2);
 
         } else if (mXAxis.getPosition() == XAxisPosition.TOP_INSIDE) {
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() + yoffset + mXAxis.mLabelRotatedHeight, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentTop(),-yoffset/2);
+            drawTickMarks(c,mViewPortHandler.contentTop(),-yoffset/2);
 
         } else if (mXAxis.getPosition() == XAxisPosition.BOTTOM) {
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() + yoffset, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentBottom(),+yoffset/2);
+            drawTickMarks(c,mViewPortHandler.contentBottom(),+yoffset/2);
 
         } else if (mXAxis.getPosition() == XAxisPosition.BOTTOM_INSIDE) {
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() - yoffset - mXAxis.mLabelRotatedHeight, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentBottom(),+yoffset/2);
+            drawTickMarks(c,mViewPortHandler.contentBottom(),+yoffset/2);
 
         } else { // BOTH SIDED
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() - yoffset, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentTop(),-yoffset/2);
+            drawTickMarks(c,mViewPortHandler.contentTop(),-yoffset/2);
 
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() + yoffset, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentBottom(),+yoffset/2);
+            drawTickMarks(c,mViewPortHandler.contentBottom(),+yoffset/2);
 
         }
         MPPointF.recycleInstance(pointF);
@@ -180,7 +180,7 @@ public class XAxisRenderer extends AxisRenderer {
     /**
      * draws the x-labels on the specified y-position
      *
-     * @param pos mark ticket length
+     * @param pos
      */
     protected void drawLabels(Canvas c, float pos, MPPointF anchor) {
 
@@ -237,13 +237,13 @@ public class XAxisRenderer extends AxisRenderer {
     }
 
     /**
-     * Draw the mark tickets on the specified y-position
+     * Draw the tick marks on the specified y-position
      * @param c
      * @param pos
      * @param length
      */
-    protected void drawMarkTicket (Canvas c, float pos, float length) {
-        if (!mXAxis.isDrawMarkTicksEnabled() || !mXAxis.isEnabled()) return;
+    protected void drawTickMarks(Canvas c, float pos, float length) {
+        if (!mXAxis.isDrawTickMarksEnabled() || !mXAxis.isEnabled()) return;
 
         float[] positions = new float[mXAxis.mEntryCount * 2];
         for (int i = 0; i < positions.length; i += 2) {
