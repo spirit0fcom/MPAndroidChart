@@ -87,6 +87,15 @@ public class YAxisRenderer extends AxisRenderer {
         }
 
         drawYLabels(c, xPos, positions, yoffset);
+
+        if (dependency == AxisDependency.LEFT) {
+            drawMarkTicket(c, mViewPortHandler.contentLeft(), positions, -xoffset/2);
+
+        } else {
+            drawMarkTicket(c, mViewPortHandler.contentRight(),positions, +xoffset/2);
+        }
+
+
     }
 
     @Override
@@ -129,7 +138,29 @@ public class YAxisRenderer extends AxisRenderer {
         }
     }
 
+    /**
+     * Draw mark tickets
+     * @param c
+     * @param fixedPosition
+     * @param positions
+     * @param length
+     */
 
+    protected void drawMarkTicket (Canvas c, float fixedPosition, float[] positions, float length) {
+        if (!mYAxis.isDrawMarkTicksEnabled() || !mYAxis.isEnabled()) return;
+
+        final int from = mYAxis.isDrawBottomYLabelEntryEnabled() ? 0 : 1;
+        final int to = mYAxis.isDrawTopYLabelEntryEnabled()
+                ? mYAxis.mEntryCount
+                : (mYAxis.mEntryCount - 1);
+
+        // draw
+        for (int i = from; i < to; i++) {
+            c.drawLine(fixedPosition, positions[i * 2 + 1], fixedPosition+length, positions[i * 2 + 1], mAxisLinePaint);
+        }
+
+
+    }
 
     protected Path mRenderGridLinesPath = new Path();
     @Override

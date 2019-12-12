@@ -115,36 +115,36 @@ public class XAxisRenderer extends AxisRenderer {
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() - yoffset, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentTop(),-10);
+            drawMarkTicket(c,mViewPortHandler.contentTop(),-yoffset/2);
 
         } else if (mXAxis.getPosition() == XAxisPosition.TOP_INSIDE) {
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() + yoffset + mXAxis.mLabelRotatedHeight, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentTop(),-10);
+            drawMarkTicket(c,mViewPortHandler.contentTop(),-yoffset/2);
 
         } else if (mXAxis.getPosition() == XAxisPosition.BOTTOM) {
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() + yoffset, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentBottom(),+10);
+            drawMarkTicket(c,mViewPortHandler.contentBottom(),+yoffset/2);
 
         } else if (mXAxis.getPosition() == XAxisPosition.BOTTOM_INSIDE) {
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() - yoffset - mXAxis.mLabelRotatedHeight, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentBottom(),+10);
+            drawMarkTicket(c,mViewPortHandler.contentBottom(),+yoffset/2);
 
         } else { // BOTH SIDED
             pointF.x = 0.5f;
             pointF.y = 1.0f;
             drawLabels(c, mViewPortHandler.contentTop() - yoffset, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentTop(),-10);
+            drawMarkTicket(c,mViewPortHandler.contentTop(),-yoffset/2);
 
             pointF.x = 0.5f;
             pointF.y = 0.0f;
             drawLabels(c, mViewPortHandler.contentBottom() + yoffset, pointF);
-            drawMarkTicket(c,mViewPortHandler.contentBottom(),+10);
+            drawMarkTicket(c,mViewPortHandler.contentBottom(),+yoffset/2);
 
         }
         MPPointF.recycleInstance(pointF);

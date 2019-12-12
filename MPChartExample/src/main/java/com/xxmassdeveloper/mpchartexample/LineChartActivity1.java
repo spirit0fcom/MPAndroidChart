@@ -122,13 +122,13 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
         YAxis yAxis;
         {   // // Y-Axis Style // //
             yAxis = chart.getAxisLeft();
-
+            yAxis.setDrawMarkTicks(true);
             // disable dual axis (only use LEFT axis)
             chart.getAxisRight().setEnabled(false);
 
             // horizontal grid lines
             //yAxis.enableGridDashedLine(10f, 10f, 0f);
-
+            yAxis.setDrawGridLines(false);
             // axis range
             yAxis.setAxisMaximum(200f);
             yAxis.setAxisMinimum(-50f);
